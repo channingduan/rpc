@@ -2,12 +2,7 @@ package config
 
 import "context"
 
-const (
-	BasePath    = "rpc"
-	ServicePath = "service"
-	ServiceName = "hello"
-)
-
+// Config 配置文件
 type Config struct {
 	BasePath     string
 	ServicePath  string
