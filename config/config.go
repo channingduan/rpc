@@ -1,17 +1,25 @@
 package config
 
-import "context"
+import (
+	"encoding/json"
+	"io/ioutil"
+)
 
-// Config 配置文件
-type Config struct {
-	BasePath     string
-	ServicePath  string
-	ServiceName  string
-	ServiceAddr  string
-	RegistryAddr string
+func Register(path string) (*Config, error) {
+
+	cfg, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+
+	return parseJson(cfg)
 }
 
-type Method struct {
-	Name string
-	Func func(ctx context.Context, res *Request, req *Response) error
+func parseJson(cfg []byte) (*Config, error) {
+
+	var err error
+	var config Config
+	err = json.Unmarshal(cfg, &config)
+
+	return &config, err
 }

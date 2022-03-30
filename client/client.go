@@ -21,7 +21,7 @@ type RpcClient struct {
 func NewClient(config *config.Config) *RpcClient {
 
 	fmt.Println(config.BasePath, config.ServicePath)
-	discovery, err := client.NewConsulDiscovery(config.BasePath, config.ServicePath, []string{config.RegistryAddr}, nil)
+	discovery, err := client.NewConsulDiscovery(config.BasePath, config.ServicePath, []string{config.RegistryConfig.Addr}, nil)
 	if err != nil {
 		panic(fmt.Sprintf("server discovery error: %v", err))
 	}
