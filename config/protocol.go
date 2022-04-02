@@ -18,6 +18,7 @@ type Config struct {
 	ServiceName    string                    `json:"service_name"`
 	ServiceAddr    string                    `json:"service_addr"`
 	RegistryConfig RegistryConfig            `json:"registry_config"`
+	RateLimit      int64                     `json:"rate_limit"`
 	DatabaseConfig map[string]DatabaseConfig `json:"database_config"`
 	CacheConfig    CacheConfig               `json:"cache_config"`
 }
@@ -58,6 +59,7 @@ type CacheConfig struct {
 
 // Method 服务结构
 type Method struct {
-	Name string
-	Func func(ctx context.Context, res *Request, req *Response) error
+	Name   string                                                       `json:"name"`
+	Router string                                                       `json:"router"`
+	Func   func(ctx context.Context, res *Request, req *Response) error `json:"func"`
 }
