@@ -4,12 +4,19 @@ import "context"
 
 // Request 请求解析
 type Request struct {
-	Message string
+	Message string `json:"message"`
 }
 
 // Response 返回协议
 type Response struct {
-	Message string
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
+type HttpResponse struct {
+	Code    int         `json:"code"`
+	Data    interface{} `json:"data,omitempty"`
+	Message string      `json:"message,omitempty"`
 }
 
 type Config struct {
@@ -21,6 +28,15 @@ type Config struct {
 	RateLimit      int64                     `json:"rate_limit"`
 	DatabaseConfig map[string]DatabaseConfig `json:"database_config"`
 	CacheConfig    CacheConfig               `json:"cache_config"`
+	TokenConfig    TokenConfig               `json:"token_config"`
+}
+
+// TokenConfig config
+type TokenConfig struct {
+	AccessSecret  string `json:"access_secret"`
+	RefreshSecret string `json:"refresh_secret"`
+	AccessExpire  int    `json:"access_expire"`
+	RefreshExpire int    `json:"refresh_expire"`
 }
 
 // DatabaseConfig 数据库配置

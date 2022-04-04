@@ -2,6 +2,7 @@ package cache
 
 import (
 	"context"
+	"fmt"
 	"github.com/channingduan/rpc/config"
 	"github.com/go-redis/redis/v8"
 	"time"
@@ -26,7 +27,7 @@ func (c *Cache) NewCache() *redis.Client {
 	return c.cache
 }
 func (c *Cache) Set(key, value string) error {
-
+	fmt.Println("c.cachec.cachec.cache", c.cache)
 	result := c.cache.Set(context.TODO(), key, value, time.Duration(0))
 	return result.Err()
 }

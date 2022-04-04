@@ -52,6 +52,7 @@ func (c *RpcClient) Call(ctx context.Context, serverPath, method string, request
 	if err != nil {
 		return nil, err
 	}
+	
 	var response config.Response
 	if err := fc.Call(ctx, method, request, &response); err != nil {
 		return nil, err
